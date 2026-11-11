@@ -65,6 +65,10 @@ flowchart TD
 
 ### 2.3 传输方式与端口边界
 
+![Codex Agent → Vivado MCP Server → Vivado 2026.1 通信架构](images/Screenshot%202026-11-11%20144256.png)
+
+Codex Agent 通过 MCP Client 调用 MCP Server 提供的工具，MCP 规定工具发现、调用及结果返回的交互方式。当前链路使用 HTTP 传输 MCP 消息，HTTP 基于 TCP/IP 通信。Vivado MCP Server 再通过 Tcl 接口调用 Vivado，并将执行结果沿原链路返回 Codex。MCP 也支持 STDIO，采用该方式时不需要 HTTP/TCP。
+
 | 方式 | 运行关系 | 本文用途 |
 | --- | --- | --- |
 | Streamable HTTP | 客户端连接已经运行的 HTTP MCP 服务 | 优先复用扩展启动的 `http://127.0.0.1:18090/mcp`，实际地址以日志为准 |
